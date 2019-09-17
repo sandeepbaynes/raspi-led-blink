@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="click" value="On">On</div>
+</body>
+<script type="text/javascript">
+    $('#click').click(function () {
+        var self = $('#click');
+        val = self.attr('value');
+        $.ajax('/set', {
+            data: { state: val },
+            success: function (resp) {
+                console.log(resp);
+            }
+        });
+        if (val == 'On') {
+            self.attr('value', 'Off');
+        }
+        else {
+            self.attr('value', 'On');
+        }
+        self.text(self.attr('value'));
+    });
+</script>
+
+</html>
